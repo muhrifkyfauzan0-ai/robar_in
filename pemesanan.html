@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROBARIN - Pemesanan</title>
+    <title>Pemesanan - ROBARIN</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
-    <img src="logo.png" alt="Logo ROBARIN" class="logo">
+    <img src="logo.png" alt="Logo ROBARIN" width="120">
     <h1>ROBARIN</h1>
-    <p class="slogan">Nikmatnya Bikin Balik Lagi</p>
+    <p>Nikmatnya Bikin Balik Lagi</p>
 </header>
 
 <nav>
@@ -23,34 +23,60 @@
 <section>
     <h2>Form Pemesanan</h2>
 
-    <form>
-        <label>Nama Lengkap</label>
-        <input type="text" required>
+    <form onsubmit="kirimWhatsApp(); return false;">
 
-        <label>No. HP</label>
-        <input type="tel" required>
+        <label>Nama Pelanggan</label><br>
+        <input type="text" id="nama" required><br><br>
 
-        <label>Pilih Produk</label>
-        <select required>
-            <option>Roti Bakar Cokelat</option>
-            <option>Roti Bakar Keju</option>
-            <option>Roti Bakar Cokelat Keju</option>
-            <option>Roti Bakar Strawberry</option>
-        </select>
+        <label>Nomor HP</label><br>
+        <input type="text" id="hp" required><br><br>
 
-        <label>Jumlah Pesanan</label>
-        <input type="number" min="1" required>
+        <label>Menu</label><br>
+        <select id="menu" required>
+            <option value="Roti Bakar Coklat">Roti Bakar Coklat</option>
+            <option value="Roti Bakar Keju">Roti Bakar Keju</option>
+            <option value="Roti Bakar Coklat Keju">Roti Bakar Coklat Keju</option>
+            <option value="Roti Bakar Strawberry">Roti Bakar Strawberry</option>
+        </select><br><br>
 
-        <label>Alamat Pengiriman</label>
-        <textarea rows="4"></textarea>
+        <label>Jumlah Pesanan</label><br>
+        <input type="number" id="jumlah" min="1" required><br><br>
 
-        <button type="submit">Pesan Sekarang</button>
+        <label>Alamat Pengantaran</label><br>
+        <textarea id="alamat" rows="4" required></textarea><br><br>
+
+        <button type="submit">Pesan via WhatsApp</button>
+
     </form>
 </section>
 
 <footer>
-    <p>© 2026 ROBARIN - Nikmatnya Bikin Balik Lagi</p>
+    <p>&copy; 2026 ROBARIN - Nikmatnya Bikin Balik Lagi</p>
 </footer>
+
+<script>
+function kirimWhatsApp() {
+
+    let nama = document.getElementById("nama").value;
+    let hp = document.getElementById("hp").value;
+    let menu = document.getElementById("menu").value;
+    let jumlah = document.getElementById("jumlah").value;
+    let alamat = document.getElementById("alamat").value;
+
+    let pesan =
+`Halo ROBARIN, saya ingin memesan:
+
+Nama: ${nama}
+No HP: ${hp}
+Menu: ${menu}
+Jumlah: ${jumlah}
+Alamat: ${alamat}`;
+
+    let url = "https://wa.me/6287810132864?text=" + encodeURIComponent(pesan);
+
+    window.open(url, "_blank");
+}
+</script>
 
 </body>
 </html>
